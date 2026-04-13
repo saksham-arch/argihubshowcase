@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="AgriAdvisory Hub — Smart farming assistant for crop recommendations, farm registration, and agricultural products.">
+    content="AgriAdvisory Hub is a smart agriculture platform for farmer profiles, crop advisories, marketplace orders, analytics, and admin oversight.">
   <title>AgriAdvisory Hub — Smart Farming Assistant</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,23 +16,54 @@
     <a href="index.html" class="active">Home</a>
     <a href="register.html">Register</a>
     <a href="products.html">Products</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="advisory.html">Advisory</a>
+    <a href="admin.html">Admin</a>
     <a href="checkout.html">Cart</a>
   </nav>
 
   <header>
-    <span class="badge">Smart Agriculture Platform</span>
+    <span class="badge">Static Demo Ready</span>
     <h1>AgriAdvisory Hub</h1>
-    <p>Your Smart Farming Assistant</p>
+    <p>Farmer profiles, advisories, orders and insights in one showcase</p>
   </header>
 
-  <div class="section">
-    <h2>Welcome, Farmer</h2>
-    <p>
-      AgriAdvisory Hub empowers farmers with intelligent crop recommendations,
-      seamless farm registration, and a curated marketplace for essential
-      agricultural products — all in one place.
-    </p>
+  <section class="section hero-panel">
+    <div class="hero-grid">
+      <div>
+        <h2>Smart agriculture demo built for localhost</h2>
+        <p>
+          This version is prepared for classroom and showcase use. It works on XAMPP, supports a live database when
+          available, and still runs cleanly in demo mode when there is no database connection.
+        </p>
+        <div class="hero-actions">
+          <a href="dashboard.html" class="btn-outline-link">Open Farmer Dashboard</a>
+          <a href="products.html" class="btn-outline-link">Browse Marketplace</a>
+        </div>
+      </div>
+      <div class="metric-grid">
+        <div>
+          <span>Current modules</span>
+          <strong>7 pages</strong>
+        </div>
+        <div>
+          <span>Static demo support</span>
+          <strong>Enabled</strong>
+        </div>
+        <div>
+          <span>Schema coverage</span>
+          <strong>Core + future</strong>
+        </div>
+        <div>
+          <span>Deployment fit</span>
+          <strong>XAMPP first</strong>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <div class="section">
+    <h2>Feature Coverage</h2>
     <div class="features">
       <div class="feature-card">
         <div class="feature-icon">
@@ -45,8 +76,8 @@
             <path d="M12 6v4l3 3" />
           </svg>
         </div>
-        <h3>Crop Recommendations</h3>
-        <p>Get data-driven insights tailored to your soil, climate, and region for maximum yield.</p>
+        <h3>Weather + Advisory</h3>
+        <p>Demo weather snapshots and crop recommendations show how the advisory module will behave.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
@@ -59,8 +90,8 @@
             <polyline points="10 9 9 9 8 9" />
           </svg>
         </div>
-        <h3>Farm Registration</h3>
-        <p>Register your farm profile and access personalized advisory services effortlessly.</p>
+        <h3>Farmer Command Center</h3>
+        <p>Profile details, notifications, language preferences, sessions, analytics, and recent orders are grouped in one place.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
@@ -71,22 +102,32 @@
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
           </svg>
         </div>
-        <h3>Agri Marketplace</h3>
-        <p>Browse and purchase seeds, fertilizers, and tools from verified suppliers.</p>
+        <h3>Marketplace + Checkout</h3>
+        <p>Products, cart, and checkout still work in demo mode, with orders stored locally if the database is offline.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            <path d="M3 3h18v4H3z" />
+            <path d="M5 7v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7" />
+            <path d="M9 12h6" />
+            <path d="M9 16h6" />
           </svg>
         </div>
-        <h3>Expert Advisory</h3>
-        <p>Connect with agricultural experts for soil testing and crop consultation.</p>
+        <h3>Admin Overview</h3>
+        <p>The admin surface summarises farmers, products, and orders using the same schema assumptions as the backend.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Demo Flow</h2>
+    <div class="timeline-list">
+      <div><span>1</span><p>Register a farmer profile. If the database is down, it is saved in local demo storage.</p></div>
+      <div><span>2</span><p>Browse products. Static catalog fallback keeps the marketplace visible even with no database.</p></div>
+      <div><span>3</span><p>Place an order from the cart. Orders are stored locally in demo mode for the showcase.</p></div>
+      <div><span>4</span><p>Review dashboard, advisory, analytics, notification, and admin pages with the same demo data.</p></div>
     </div>
   </div>
 

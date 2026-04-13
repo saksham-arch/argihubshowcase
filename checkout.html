@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Review your cart and place your order on AgriAdvisory Hub.">
+    <meta name="description" content="Review your cart and place an order on AgriAdvisory Hub.">
     <title>Checkout — AgriAdvisory Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,24 +15,24 @@
         <a href="index.html">Home</a>
         <a href="register.html">Register</a>
         <a href="products.html">Products</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="advisory.html">Advisory</a>
+        <a href="admin.html">Admin</a>
         <a href="checkout.html" class="active">Cart</a>
     </nav>
 
     <header class="header-slim">
         <span class="badge">Checkout</span>
         <h1>Your Order</h1>
-        <p>Review items and enter delivery details</p>
+        <p>Review items and place the order with database or demo fallback</p>
     </header>
 
-    <!-- Empty cart state -->
     <div id="cart-empty" class="section empty-state" style="display:none;">
         <p>Your cart is empty. <a href="products.html" class="link-accent">Browse products</a></p>
     </div>
 
-    <!-- Checkout layout — shown when cart has items -->
     <div id="checkout-layout" class="checkout-grid" style="display:none;">
 
-        <!-- LEFT: Cart Summary -->
         <div class="section checkout-panel">
             <h2>Order Summary</h2>
             <ul id="cart"></ul>
@@ -42,11 +42,10 @@
             </div>
         </div>
 
-        <!-- RIGHT: Delivery Form -->
         <div class="section checkout-panel">
             <h2>Delivery Details</h2>
+            <p class="section-intro">If the database is offline, the order is still saved locally so the demo flow remains complete.</p>
             <form id="order-form">
-
                 <div class="form-group">
                     <label for="cust-name">Full Name</label>
                     <input type="text" id="cust-name" placeholder="Your name" required>
@@ -59,8 +58,7 @@
 
                 <div class="form-group">
                     <label for="cust-address">Delivery Address</label>
-                    <textarea id="cust-address" rows="4" placeholder="Village, Taluka, District, State"
-                        required></textarea>
+                    <textarea id="cust-address" rows="4" placeholder="Village, Taluka, District, State" required></textarea>
                 </div>
 
                 <div class="form-group">
@@ -72,17 +70,13 @@
                     </select>
                 </div>
 
-                <button type="submit" id="place-order-btn" class="btn-place-order">
-                    Place Order
-                </button>
-
+                <button type="submit" id="place-order-btn" class="btn-place-order">Place Order</button>
             </form>
             <p id="order-msg" class="order-msg"></p>
         </div>
 
     </div>
 
-    <!-- Order success screen -->
     <div id="order-success" class="section order-success-panel" style="display:none;">
         <div class="success-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
@@ -92,8 +86,9 @@
             </svg>
         </div>
         <h2>Order Placed!</h2>
-        <p>Thank you. Your order has been received and saved. Our team will contact you shortly.</p>
+        <p>Thank you. Your order has been recorded and can be reviewed from the dashboard or admin page.</p>
         <p id="order-ref" class="order-ref"></p>
+        <p id="order-success-note" class="section-intro"></p>
         <a href="products.html" class="btn-outline-link">Continue Shopping</a>
     </div>
 

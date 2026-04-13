@@ -10,6 +10,9 @@ The frontend pages stay the same in both modes:
 - `index.html`
 - `register.html`
 - `products.html`
+- `dashboard.html`
+- `advisory.html`
+- `admin.html`
 - `checkout.html`
 
 The backend auto-loads database configuration from `.env` if present. If `DATABASE_URL` is set, it will use that first. Otherwise it falls back to the `AGRI_DB_*` variables.
@@ -74,6 +77,7 @@ http://localhost/AgriAdvisory-main/
 - Farmer registration writes to `farmers` and `language_preferences`
 - Products load from `products` and fall back to the built-in catalog if the database is empty or unavailable
 - Checkout writes to `orders`, `order_items`, and `payments`
+- Dashboard, advisory, and admin pages can be used as static demo pages
 - The cart still uses browser `localStorage`, so no UI changes were introduced
 
 ## Option 1B: Run on localhost with XAMPP and use the deployed Railway PostgreSQL database
@@ -122,6 +126,50 @@ http://localhost/AgriAdvisory-main/
 - PHP endpoints connect to Railway PostgreSQL remotely
 - Products still fall back to the built-in static catalog if the remote database is unavailable
 - Registration and checkout need the database connection to succeed
+
+## Option 1C: Run fully as a static demo on XAMPP with no database connection
+
+This is the easiest classroom/demo mode.
+
+### 1. Put the project in `htdocs`
+
+Example:
+
+```bash
+/Applications/XAMPP/xamppfiles/htdocs/AgriAdvisory-main
+```
+
+### 2. Start only Apache
+
+You only need:
+
+- `Apache`
+
+Do not start MySQL if you want to test the no-database path.
+
+### 3. Open the project
+
+```text
+http://localhost/AgriAdvisory-main/
+```
+
+### What works in full demo mode
+
+- `index.html`
+- `products.html` with static fallback catalog
+- `register.html` with local demo registration storage
+- `checkout.html` with local demo order storage
+- `dashboard.html`
+- `advisory.html`
+- `admin.html`
+
+### What is stored locally in demo mode
+
+- Cart items
+- Demo farmer registrations
+- Demo order records
+
+These are stored in browser `localStorage`, so the flow remains complete even without a database.
 
 ## Option 2: Run without XAMPP using Docker
 
@@ -232,7 +280,8 @@ vendor/bin/phpunit --configuration phpunit.xml
 - Do not commit a real `.env` file with live Railway passwords.
 - The current visible UI still uses `localStorage` for cart state by design, so the user experience remains simple.
 - Static fallback is implemented for the products page, so browsing products still works even if the database is unavailable.
-- Weather, analytics, advisory, sessions, and admin are fully represented in the schema and seed data, but they are future-ready backend modules rather than active UI pages in this version.
+- Registration and checkout also have a local demo fallback in the frontend so the showcase flow still works with no database.
+- Weather, analytics, advisory, sessions, and admin are represented as active static demo pages in this version.
 
 ## If something fails to start
 

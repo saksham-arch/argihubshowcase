@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Register your farm on AgriAdvisory Hub for personalized advisory and crop consultation.">
+    <meta name="description" content="Register a farmer profile on AgriAdvisory Hub.">
     <title>Register — AgriAdvisory Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,6 +15,9 @@
         <a href="index.html">Home</a>
         <a href="register.html" class="active">Register</a>
         <a href="products.html">Products</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="advisory.html">Advisory</a>
+        <a href="admin.html">Admin</a>
         <a href="checkout.html">Cart</a>
     </nav>
 
@@ -27,44 +29,58 @@
 
     <div class="section">
         <h2>Create Your Account</h2>
+        <p id="register-status" class="section-intro"></p>
 
         <form id="form">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="Enter your full name" required>
-            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="you@example.com" required>
-            </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
 
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="text" id="phone" placeholder="+91 XXXXX XXXXX" required>
-            </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" placeholder="+91 XXXXX XXXXX" required>
+                </div>
 
-            <div class="form-group">
-                <label for="pass">Password</label>
-                <input type="password" id="pass" placeholder="Minimum 8 characters" required>
-            </div>
+                <div class="form-group">
+                    <label for="pass">Password</label>
+                    <input type="password" id="pass" placeholder="Minimum 8 characters" required>
+                </div>
 
-            <div class="form-group">
-                <label for="address">Farm Address</label>
-                <textarea id="address" placeholder="Village, Taluka, District, State" required></textarea>
-            </div>
+                <div class="form-group form-group-wide">
+                    <label for="address">Farm Address</label>
+                    <textarea id="address" placeholder="Village, Taluka, District, State" required></textarea>
+                </div>
 
-            <div class="form-group">
-                <label for="land">Land Area (acres)</label>
-                <input type="number" id="land" placeholder="e.g. 5" required>
-            </div>
+                <div class="form-group">
+                    <label for="land">Land Area (acres)</label>
+                    <input type="number" id="land" placeholder="e.g. 5" required>
+                </div>
 
-            <div class="form-group">
-                <label for="service">Service Needed</label>
-                <select id="service">
-                    <option>Soil Testing</option>
-                    <option>Crop Consultation</option>
-                </select>
+                <div class="form-group">
+                    <label for="service">Service Needed</label>
+                    <select id="service">
+                        <option>Soil Testing</option>
+                        <option>Crop Consultation</option>
+                        <option>Weather Advisory</option>
+                        <option>Marketplace Support</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="language">Preferred Language</label>
+                    <select id="language">
+                        <option>English</option>
+                        <option>Hindi</option>
+                        <option>Marathi</option>
+                    </select>
+                </div>
             </div>
 
             <button type="submit" style="margin-top: 16px;">Register Now</button>

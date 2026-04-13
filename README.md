@@ -5,9 +5,12 @@ AgriAdvisory Hub is a PHP mini project for farmer registration, agricultural pro
 ## What is implemented
 
 - Landing page for the platform overview
-- Farmer registration form with backend validation and secure password hashing
+- Farmer registration form with backend validation and local demo fallback
 - Marketplace page with database-backed products and static fallback products
-- Checkout page with LocalStorage cart and backend order placement
+- Checkout page with LocalStorage cart and backend or local demo order placement
+- Farmer dashboard for profile, notifications, language preferences, sessions, analytics, and recent orders
+- Weather and crop advisory page for showcase recommendations
+- Admin page for farmers, products, and orders overview
 - Normalized relational schema for current and future modules
 - PHPUnit test cases for core backend validation and order logic
 - Deployment paths for XAMPP, Docker, and Railway
@@ -69,6 +72,7 @@ composer test
 
 - The UI/UX was kept aligned with the existing project structure and behavior.
 - The cart remains frontend-local through browser LocalStorage to avoid unnecessary UI complexity.
-- Future modules are represented in the schema and documentation, even if their UI screens are not yet exposed in this version.
+- The XAMPP demo can run without a database connection for product browsing, farmer registration demo, dashboard review, admin review, and local demo order flow.
+- The schema-backed modules are now surfaced as static demo pages even when the database is not connected.
 
 # argihubshowcase
