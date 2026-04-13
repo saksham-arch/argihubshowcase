@@ -109,7 +109,11 @@ const WEATHER_FEED = [
         rainfall: "2 mm",
         soil_moisture: "31%",
         weather_condition: "Partly Cloudy",
-        fetched_at: "Today, 7:30 AM"
+        fetched_at: "Today, 7:30 AM",
+        field_signal: "Transplanting window open through late afternoon.",
+        wind: "8 km/h",
+        pressure: "1008 hPa",
+        risk: "stable"
     },
     {
         weather_data_id: 2,
@@ -119,7 +123,11 @@ const WEATHER_FEED = [
         rainfall: "12 mm",
         soil_moisture: "42%",
         weather_condition: "Light Rain",
-        fetched_at: "Today, 7:35 AM"
+        fetched_at: "Today, 7:35 AM",
+        field_signal: "Delay foliar spray and avoid field traffic in low patches.",
+        wind: "11 km/h",
+        pressure: "1005 hPa",
+        risk: "watch"
     },
     {
         weather_data_id: 3,
@@ -129,7 +137,11 @@ const WEATHER_FEED = [
         rainfall: "0 mm",
         soil_moisture: "25%",
         weather_condition: "Dry Heat",
-        fetched_at: "Today, 7:40 AM"
+        fetched_at: "Today, 7:40 AM",
+        field_signal: "Protect young crop stands with morning irrigation and mulch.",
+        wind: "14 km/h",
+        pressure: "1009 hPa",
+        risk: "stress"
     }
 ];
 
@@ -142,7 +154,10 @@ const ADVISORIES = [
         recommended_crop: "Paddy",
         recommendation_score: "92.5",
         generated_at: "Today, 8:10 AM",
-        summary: "Maintain shallow standing water for transplantation and schedule the first nitrogen split within the next 5 days."
+        summary: "Maintain shallow standing water for transplantation and schedule the first nitrogen split within the next 5 days.",
+        action_window: "Next 48 hours",
+        field_focus: "Nursery transfer and fertilizer staging",
+        moisture_note: "Current soil profile is supportive but should not move into prolonged standing water."
     },
     {
         advisory_id: 2,
@@ -152,7 +167,10 @@ const ADVISORIES = [
         recommended_crop: "Wheat",
         recommendation_score: "88.0",
         generated_at: "Today, 8:15 AM",
-        summary: "Prepare for wheat sowing with pre-irrigation and seed treatment because current soil moisture is favorable."
+        summary: "Prepare for wheat sowing with pre-irrigation and seed treatment because current soil moisture is favorable.",
+        action_window: "This week",
+        field_focus: "Pre-sowing irrigation and seed treatment",
+        moisture_note: "Soil moisture reserves are strong enough to support a clean first pass for seedbed preparation."
     },
     {
         advisory_id: 3,
@@ -162,7 +180,10 @@ const ADVISORIES = [
         recommended_crop: "Groundnut",
         recommendation_score: "84.5",
         generated_at: "Today, 8:20 AM",
-        summary: "Use mulching and morning irrigation scheduling because afternoon evapotranspiration is trending high."
+        summary: "Use mulching and morning irrigation scheduling because afternoon evapotranspiration is trending high.",
+        action_window: "Immediate",
+        field_focus: "Mulch coverage and irrigation timing",
+        moisture_note: "Heat load is the dominant variable, so water retention discipline matters more than volume."
     }
 ];
 
@@ -495,19 +516,59 @@ function renderDashboard() {
 }
 
 function renderWeatherAdvisory() {
+    const board = document.getElementById("climate-board");
+    const current = WEATHER_FEED[0];
+
+    if (board && current) {
+        board.innerHTML = `
+            <div class="climate-lead ${current.risk}">
+                <div class="climate-topline">
+                    <span class="mini-pill">Primary field outlook</span>
+                    <span class="risk-flag ${current.risk}">${current.risk}</span>
+                </div>
+                <h2>${current.location} field conditions are ${current.weather_condition.toLowerCase()}.</h2>
+                <p>${current.field_signal}</p>
+                <div class="climate-numbers">
+                    <div><span>Temp</span><strong>${current.temperature}</strong></div>
+                    <div><span>Humidity</span><strong>${current.humidity}</strong></div>
+                    <div><span>Wind</span><strong>${current.wind}</strong></div>
+                    <div><span>Pressure</span><strong>${current.pressure}</strong></div>
+                </div>
+            </div>
+            <div class="climate-sidecard">
+                <span class="list-kicker">Field note</span>
+                <h3>Moisture is usable, but timing matters more than volume.</h3>
+                <p>Use the coolest part of the day for irrigation and keep mechanical activity away from wet zones after rainfall events.</p>
+                <div class="signal-stack">
+                    <div><span>Rainfall</span><strong>${current.rainfall}</strong></div>
+                    <div><span>Soil moisture</span><strong>${current.soil_moisture}</strong></div>
+                    <div><span>Updated</span><strong>${current.fetched_at}</strong></div>
+                </div>
+            </div>
+        `;
+    }
+
     const weatherGrid = document.getElementById("weather-grid");
     if (weatherGrid) {
         weatherGrid.innerHTML = WEATHER_FEED.map(item => `
-            <article class="insight-card">
-                <div class="mini-pill">${item.location}</div>
+            <article class="weather-card ${item.risk}">
+                <div class="weather-card-head">
+                    <div class="mini-pill">${item.location}</div>
+                    <span class="risk-flag ${item.risk}">${item.risk}</span>
+                </div>
                 <h3>${item.weather_condition}</h3>
+                <p class="weather-note">${item.field_signal}</p>
                 <div class="metric-grid compact">
                     <div><span>Temperature</span><strong>${item.temperature}</strong></div>
                     <div><span>Humidity</span><strong>${item.humidity}</strong></div>
                     <div><span>Rainfall</span><strong>${item.rainfall}</strong></div>
                     <div><span>Soil moisture</span><strong>${item.soil_moisture}</strong></div>
                 </div>
-                <p>${item.fetched_at}</p>
+                <div class="weather-meta">
+                    <span>${item.wind}</span>
+                    <span>${item.pressure}</span>
+                    <span>${item.fetched_at}</span>
+                </div>
             </article>
         `).join("");
     }
@@ -515,13 +576,26 @@ function renderWeatherAdvisory() {
     const advisoryList = document.getElementById("advisory-list");
     if (advisoryList) {
         advisoryList.innerHTML = ADVISORIES.map(item => `
-            <li>
-                <div>
-                    <span class="list-kicker">${item.soil_type} • ${item.season}</span>
-                    <strong>${item.recommended_crop} recommendation</strong>
-                    <small>${item.summary}</small>
+            <li class="advisory-card">
+                <div class="advisory-main">
+                    <div class="advisory-head">
+                        <div>
+                            <span class="list-kicker">${item.soil_type} • ${item.season}</span>
+                            <strong>${item.recommended_crop} recommendation</strong>
+                        </div>
+                        <span class="score-badge">${item.recommendation_score}</span>
+                    </div>
+                    <p>${item.summary}</p>
+                    <div class="advisory-meta-grid">
+                        <div><span>Action window</span><strong>${item.action_window}</strong></div>
+                        <div><span>Field focus</span><strong>${item.field_focus}</strong></div>
+                        <div><span>Generated</span><strong>${item.generated_at}</strong></div>
+                    </div>
                 </div>
-                <span class="score-badge">${item.recommendation_score}</span>
+                <div class="advisory-footnote">
+                    <span class="list-kicker">Moisture note</span>
+                    <p>${item.moisture_note}</p>
+                </div>
             </li>
         `).join("");
     }

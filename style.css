@@ -1158,6 +1158,129 @@ header.header-slim h1 {
     font-weight: 700;
 }
 
+.climate-board {
+    display: grid;
+    grid-template-columns: 1.4fr 0.9fr;
+    gap: 20px;
+}
+
+.climate-lead,
+.climate-sidecard,
+.weather-card,
+.advisory-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.climate-topline,
+.weather-card-head,
+.advisory-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 12px;
+}
+
+.climate-lead h2 {
+    margin-top: 16px;
+    margin-bottom: 12px;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    line-height: 1.15;
+}
+
+.climate-lead p,
+.climate-sidecard p,
+.weather-note,
+.advisory-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.climate-numbers,
+.signal-stack,
+.advisory-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.climate-numbers div,
+.signal-stack div,
+.advisory-meta-grid div {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px;
+}
+
+.risk-flag {
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border: 1px solid var(--border-color);
+}
+
+.risk-flag.stable {
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--accent-primary);
+}
+
+.risk-flag.watch {
+    background: rgba(245, 158, 11, 0.14);
+    color: #fbbf24;
+}
+
+.risk-flag.stress {
+    background: rgba(239, 68, 68, 0.16);
+    color: #fda4af;
+}
+
+.weather-card {
+    display: grid;
+    gap: 14px;
+}
+
+.weather-card.stable {
+    background: linear-gradient(180deg, rgba(52, 211, 153, 0.08), rgba(255, 255, 255, 0.02));
+}
+
+.weather-card.watch {
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.08), rgba(255, 255, 255, 0.02));
+}
+
+.weather-card.stress {
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.08), rgba(255, 255, 255, 0.02));
+}
+
+.weather-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.advisory-card {
+    display: grid;
+    grid-template-columns: 1.5fr 0.9fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.advisory-card .score-badge {
+    min-width: 72px;
+}
+
+.advisory-footnote {
+    padding-left: 20px;
+    border-left: 1px solid var(--border-color);
+}
+
 .table-wrap {
     overflow-x: auto;
     border: 1px solid var(--border-color);
@@ -1194,11 +1317,23 @@ tbody tr:hover {
     .dashboard-shell,
     .form-grid,
     .metric-strip,
-    .detail-list {
+    .detail-list,
+    .climate-board,
+    .advisory-card,
+    .climate-numbers,
+    .signal-stack,
+    .advisory-meta-grid {
         grid-template-columns: 1fr;
     }
 
     .dashboard-shell {
         padding: 0 16px;
+    }
+
+    .advisory-footnote {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        padding-top: 18px;
     }
 }
