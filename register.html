@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Register your farm on AgriAdvisory Hub for personalized advisory and crop consultation.">
+    <title>Register — AgriAdvisory Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="register.html" class="active">Register</a>
+        <a href="products.html">Products</a>
+        <a href="checkout.html">Cart</a>
+    </nav>
+
+    <header>
+        <span class="badge">Join the Hub</span>
+        <h1>Farmer Registration</h1>
+        <p>Create your profile and unlock advisory services</p>
+    </header>
+
+    <div class="section">
+        <h2>Create Your Account</h2>
+
+        <form id="form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pass">Password</label>
+                <input type="password" id="pass" placeholder="Minimum 8 characters" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Farm Address</label>
+                <textarea id="address" placeholder="Village, Taluka, District, State" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="land">Land Area (acres)</label>
+                <input type="number" id="land" placeholder="e.g. 5" required>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Service Needed</label>
+                <select id="service">
+                    <option>Soil Testing</option>
+                    <option>Crop Consultation</option>
+                </select>
+            </div>
+
+            <button type="submit" style="margin-top: 16px;">Register Now</button>
+        </form>
+
+        <p id="msg"></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AgriAdvisory Hub. Built for farmers, by farmers.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
